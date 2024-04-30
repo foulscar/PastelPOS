@@ -10,5 +10,5 @@
 ~~~
 This will be a simple (mobile-order &amp; cash only) POS system with features like multiple stores in different regions and geolocation searching via AWS Elastic Search
 
-Below is a prototype diagram of what I expect the end result to be (This could very well change).
+Below is a prototype/POC diagram of what I expect the end result to look like (This could very well change).
 ![image](README_FILES/images/archDiagram1.png)
