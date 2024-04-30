@@ -1,0 +1,46 @@
+{
+ "itemsAvailable": {
+    "primary": [
+      {
+        "id": "hamburger",
+        "name": "Hamburger",
+        "price": 4.75
+      },
+      {
+        "id": "hotdog",
+        "name": "Hotdog",
+        "price": 3.29
+      }
+    ],
+    "secondary": [
+      {
+        "id": "fries",
+        "name": "Fries",
+        "price": 2.15
+      },
+      {
+        "id": "nuggets",
+        "name": "Nuggets",
+        "price": 2.99
+      }
+    ],
+    "drinks": [
+      {
+        "id": "oceanWater",
+        "name": "Ocean Water",
+        "price": 2.15
+      },
+      {
+        "id": "cocoCola",
+        "name": "CoCo Cola",
+        "price": 1.50
+      },
+      {
+        "id": "yellowFiz",
+        "name": "Yellow Fiz",
+        "price": 1.50
+      }
+    ]
+  },
+  "mealDiscount": 30
+}
