@@ -23,13 +23,13 @@ func main() {
   ordersInSystem := initOrderTrackerSystem()
 
 	log.Println("Starting WebSocket Server (Routed Through /socket.io)")
-	wsServer := initWSServer();
+	wsServer := initWSServer(ordersInSystem);
 
 	fs := http.FileServer(http.Dir("./static"))
 	mux := http.NewServeMux()
 	mux.Handle("/", fs)
 	mux.Handle("/socket.io/", wsServer)
-	mux.HandleFunc("/api/order", orderHandler(menu, ordersInSystem))
+	mux.HandleFunc("/api/order", orderHandler(menu, ordersInSystem, wsServer))
 
 	log.Println("Starting HTTP Server on Port: " + fmt.Sprint(port))
 	log.Println("API Will Be Routed Through /api")

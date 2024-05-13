@@ -31,6 +31,7 @@ type OrdersInSystem struct {
   InProgress map[int16]Order `json:"inProgress"`
   InProgressPrimary map[int16]OrderPartial `json:"inProgressPrimary"`
   InProgressSecondary map[int16]OrderPartial `json:"inProgressSecondary"`
+  Ready map[int16]Order `json:"ready"`
 }
 
 func initMenu() (Menu, error) {

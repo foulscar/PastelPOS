@@ -3,10 +3,12 @@ package main
 import (
   "errors"
   "fmt"
+  "log"
   "time"
 	"net/http"
   "encoding/json"
   "math/rand"
+  socketio "github.com/googollee/go-socket.io"
 )
 
 type MealItems struct {
@@ -88,7 +90,7 @@ func (menu Menu) validateOrder(order OrderIN) error {
   return nil
 }
 
-func processOrder(orderIN OrderIN, ordersInSystem *OrdersInSystem) (orderID int16, err error) {
+func processOrder(orderIN OrderIN, ordersInSystem *OrdersInSystem, wsServer *socketio.Server) (orderID int16, err error) {
   if len(ordersInSystem.InProgress) >= 100 {
     return 0, errors.New("Too many orders")
   }
@@ -139,12 +141,26 @@ func processOrder(orderIN OrderIN, ordersInSystem *OrdersInSystem) (orderID int1
   if len(orderPartialSecondary.Items) > 0 {
     ordersInSystem.InProgressSecondary[orderIDToGive] = orderPartialSecondary
   }
+  
+  log.Println("API: Order System has ingested an order")
+  fmt.Println(ordersInSystem.InProgress[orderIDToGive])
+  
+  err = updateWSClientsNewOrder(
+    wsServer,
+    orderIDToGive,
+    order,
+    orderPartialPrimary,
+    orderPartialSecondary,
+  )
+  if err != nil {
+    delete(ordersInSystem.InProgress, orderIDToGive)
+    return 0, err
+  }
 
-  fmt.Println(ordersInSystem.InProgressSecondary)
   return orderIDToGive, nil
 }
 
-func orderHandler(menu Menu, ordersInSystem *OrdersInSystem) http.HandlerFunc {
+func orderHandler(menu Menu, ordersInSystem *OrdersInSystem, wsServer *socketio.Server) http.HandlerFunc {
   return func (w http.ResponseWriter, r *http.Request) {
     var orderIN OrderIN
 
@@ -162,7 +178,7 @@ func orderHandler(menu Menu, ordersInSystem *OrdersInSystem) http.HandlerFunc {
       return
     }
 
-    orderID, err := processOrder(orderIN, ordersInSystem)
+    orderID, err := processOrder(orderIN, ordersInSystem, wsServer)
     if err != nil {
       http.Error(w, err.Error(), http.StatusServiceUnavailable)
       return
