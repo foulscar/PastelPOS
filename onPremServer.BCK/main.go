@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"fmt"
+  "encoding/json"
 	"net/http"
 	"github.com/common-nighthawk/go-figure"
 )
@@ -29,6 +30,15 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/", fs)
 	mux.Handle("/socket.io/", wsServer)
+  mux.HandleFunc("/menu", func(w http.ResponseWriter, r *http.Request) {
+    menuJSON, err := json.Marshal(menu)
+    if err != nil {
+      log.Println("Failed To Parse System Interpreted Menu into JSON" + err.Error())
+      return
+    }
+
+    fmt.Fprintf(w, string(menuJSON))
+  })
 	mux.HandleFunc("/api/order", orderHandler(menu, ordersInSystem, wsServer))
 
 	log.Println("Starting HTTP Server on Port: " + fmt.Sprint(port))

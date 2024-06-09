@@ -3,34 +3,41 @@
     "primary": {
       "hamburger": {
         "name": "Hamburger",
+        "icon": "🍔",
         "price": 4.75
       },
       "hotdog": {
         "name": "Hotdog",
+        "icon": "🌭",
         "price": 3.29
       }
     },
     "secondary": {
       "fries": {
         "name": "Fries",
+        "icon": "🍟",
         "price": 2.15
       },
       "nuggets": {
         "name": "Nuggets",
+        "icon": "🟠",
         "price": 2.99
       }
     },
     "drinks": {
       "oceanWater": {
         "name": "Ocean Water",
+        "icon": "🍶",
         "price": 2.15
       },
       "cocoCola": {
         "name": "CoCo Cola",
+        "icon": "🍺",
         "price": 1.50
       },
       "yellowFiz": {
         "name": "Yellow Fiz",
+        "icon": "🥤",
         "price": 1.50
       }
     }

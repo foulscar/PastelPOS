@@ -8,6 +8,7 @@ import (
 
 type Item struct {
 	Name string `json:"name"`
+  Icon string `json:"icon"`
 	Price float32 `json:"price"`
 }
 
@@ -50,5 +51,6 @@ func initOrderTrackerSystem() *OrdersInSystem {
   ordersInSystem.InProgress = make(map[int16]Order)
   ordersInSystem.InProgressPrimary = make(map[int16]OrderPartial)
   ordersInSystem.InProgressSecondary = make(map[int16]OrderPartial)
+  ordersInSystem.Ready = make(map[int16]Order)
   return ordersInSystem
 }

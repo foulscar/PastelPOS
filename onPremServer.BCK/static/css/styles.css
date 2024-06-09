@@ -1,0 +1,112 @@
+html {
+  background-color: pink
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+#wrapper-main {
+  width: 100%;
+  height: 100%;
+}
+
+#wrapper-main.wrapper-orders {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar-horizontal {
+  width: 100%;
+  height: 0.5em;
+  background-color: black;
+}
+
+.wrapper-tracker-panel {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper-tracker-panel.left {
+  border-right: 0.25em solid;
+}
+
+.wrapper-tracker-panel.right {
+  border-left: 0.25em solid;
+}
+
+.wrapper-tracker-panel.tracker-title {
+  font-size: 10%;
+}
+
+.order {
+  min-width: 14.2%;
+  max-width: 14.2%;
+  height: 45%;
+  border: 0.25em solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1%;
+}
+
+.order h2 {
+  margin: 0;
+  padding: 0;
+  height: 10%;
+}
+
+.order .order-content {
+  width: 98%;
+  height: 90%;
+  border-top: 0.25em solid;
+  border-bottom: 0.25em solid;
+  background-color: gainsboro;
+  padding: 1%;
+  overflow-y: auto;
+}
+
+.order button {
+  width: 100%;
+  height: 10%;
+  border: none;
+  background-color: lawngreen;
+}
+
+.order-entry {
+  display: flex;
+  flex-direction: row;
+}
+
+.order-entry h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.order-entry h3 + h3 {
+  margin-left: 2%;
+}
+
+
+.order-entry.group {
+  margin-top: 1%;
+}
